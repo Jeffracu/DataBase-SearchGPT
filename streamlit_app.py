@@ -65,7 +65,7 @@ Sólo utiliza la información de df_estructuras y df_memorias
 
     
  response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
- result = generate_response(df_estructuras, df_memorias, user_query)
+ result = response["output"]
  return st.success(result)
 
 
