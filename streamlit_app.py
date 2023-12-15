@@ -24,9 +24,10 @@ st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 #Primero se deben subir los archivos csv que se van a utilizar como fuente de información 
 url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv"
 url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
+df = pd.read_csv(url1, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
 
-df_estructuras = pd.read_csv(url1, encoding="utf-8")
-df_memorias = pd.read_csv(url2, encoding="utf-8")
+df_estructuras = pd.read_csv(url1, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
+df_memorias = pd.read_csv(url2, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
