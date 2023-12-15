@@ -42,7 +42,7 @@ for df in lista_dataframes[1:]:
     df_base = pd.merge(df_base, df, on='id_archivo')
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
-model_option = st.selectbox(
+model_option = st.sidebar.selectbox(
     'Selecciona un modelo:',
     ('gpt-3.5-turbo-1106','gpt-4','gpt-4-1106-preview')
 )
@@ -88,7 +88,7 @@ texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, adem�
 texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario en df_base y describe las características de cada proyecto referenciado"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
-openai_api_key = st.text_input('Inserte su OpenAI API Key.\nO utilice la siguiente con saldo disponible de prueba: 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', type='password', disabled=not (user_query))
+openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key.\n( Mientras haya saldo puede utilizar la siguiente: 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 )', type='password', disabled=not (user_query))
 #"""Análisis del agente"""
 if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
