@@ -39,7 +39,7 @@ df_base = lista_dataframes[0]
 
 # Iterar sobre los demás DataFrames y combinarlos con el DataFrame base
 for df in lista_dataframes[1:]:
-    df_base = pd.merge(df_base, how='inner', df, on='id_archivo')
+    df_base = pd.merge(df_base, df, on='id_archivo', how='left')
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
