@@ -23,9 +23,9 @@ st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
 ##Primero se deben subir los archivos csv que se van a utilizar como fuente de información 
 
-# Lista de archivos csv
-archivos_csv = ['/content/drive/MyDrive/Colab Notebooks/structuraldbChat/informacionEstructuras.csv', "/content/drive/MyDrive/Colab Notebooks/structuraldbChat/archivosMemorias.csv"]
 
+# Lista de archivos csv
+archivos_csv = ['../informacionEstructuras.csv', "../archivosMemorias.csv"]
 # Crear una lista vacía para almacenar los dataframes
 lista_dataframes = []
 
