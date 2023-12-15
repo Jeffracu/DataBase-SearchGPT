@@ -25,7 +25,7 @@ st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
 
 # Lista de archivos csv
-archivos_csv = ['../informacionEstructuras.csv', "../archivosMemorias.csv"]
+archivos_csv = ['https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv', "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"]
 # Crear una lista vacía para almacenar los dataframes
 lista_dataframes = []
 
