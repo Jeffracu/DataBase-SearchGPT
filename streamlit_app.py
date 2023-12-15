@@ -25,8 +25,8 @@ st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv"
 url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
 
-df_estructuras = pd.read_csv(url1)
-df_memorias = pd.read_csv(url2)
+df_estructuras = pd.read_csv(url1, encoding="utf-8")
+df_memorias = pd.read_csv(url2, encoding="utf-8")
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
