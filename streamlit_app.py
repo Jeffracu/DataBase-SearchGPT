@@ -62,8 +62,9 @@ Sólo utiliza la información de df_estructuras y df_memorias
         max_iterations=5,
         handle_parsing_errors=True,
   )
- 
- #response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
+
+    
+ response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
  result = generate_response(df_estructuras, df_memorias, user_query)
  return st.success(result)
 
@@ -82,4 +83,4 @@ if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
 if openai_api_key.startswith('sk-'):
  st.header('Sugerencia')
- 
+ generate_response(df_estructuras, df_memorias, user_query)
