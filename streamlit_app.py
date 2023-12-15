@@ -21,11 +21,13 @@ from langchain.prompts.prompt import PromptTemplate
 st.set_page_config(page_title='🤖 Structural Database Search')
 st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
-##Primero se deben subir los archivos csv que se van a utilizar como fuente de información 
+#Primero se deben subir los archivos csv que se van a utilizar como fuente de información 
+url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv"
+url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
 
 
 # Lista de archivos csv
-archivos_csv = ['https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv', "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"]
+archivos_csv = (url1, url2)
 # Crear una lista vacía para almacenar los dataframes
 lista_dataframes = []
 
