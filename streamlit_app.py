@@ -26,8 +26,8 @@ url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEs
 url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
 df = pd.read_csv(url1, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
 
-df_estructuras = pd.read_csv(url1, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
-df_memorias = pd.read_csv(url2, sep='your_delimiter', encoding="utf-8", error_bad_lines=False)
+df_estructuras = pd.read_csv(url1, sep='your_delimiter', encoding="utf-8")
+df_memorias = pd.read_csv(url2, sep='your_delimiter', encoding="utf-8")
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
