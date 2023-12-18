@@ -1,6 +1,6 @@
 langchain
-openai
-pandas
-streamlit
+openai==1.3.9
+pandas==1.5.3
+streamlit==1.29.0
 langchain_experimental
-pathlib
+pathlib==1.0.1
