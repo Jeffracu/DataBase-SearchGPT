@@ -38,31 +38,32 @@ model_option = st.sidebar.selectbox(
 def generate_response(df_estructuras, df_memorias, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
  llm = ChatOpenAI(temperature=0, model=model_option, openai_api_key=openai_api_key, streaming=True)
-  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
+ # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
-  Dada una consulta del usuario {dialect}
-  Sólo utiliza la información de df_estructuras y df_memorias
-  1. Consulta los datos similares en df_estructuras
-  2. Devuelve una respuesta en español que incluya:
-     - Referencias a proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación de df_memorias
-     - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo  y su url de ubicación de df_memorias
+ Dada una consulta del usuario {dialect}
+ Sólo utiliza la información de df_estructuras y df_memorias
+ 1. Consulta los datos similares en df_estructuras
+ 2. Devuelve una respuesta en español que incluya:
+   - Referencias a proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación de df_memorias
+   - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación de df_memorias
 
-  Respuesta {output}
-  Pregunta {input}
-  """
+ Respuesta {output}
+ Pregunta {input}
+ """
  PROMPT = PromptTemplate(input_variables=["input","dialect","output",],template=_DEFAULT_TEMPLATE)
-  # Crear un agente `pandas_df_agent` que usa el modelo de lenguaje y el DataFrame base.
+ # Crear un agente `pandas_df_agent` que usa el modelo de lenguaje y el DataFrame base.
  pandas_df_agent = create_pandas_dataframe_agent(
-        llm,
-        df_estructuras, df_memorias,
-        verbose=True,
-        agent_type=AgentType.OPENAI_FUNCTIONS,
-        prompt_template=PROMPT,
-        max_iterations=5,
-        handle_parsing_errors=True,
-        )
+    llm,
+    df_estructuras,
+    df_memorias,
+    verbose=True,
+    agent_type=AgentType.OPENAI_FUNCTIONS,
+    prompt_template=PROMPT,
+    max_iterations=5,
+    handle_parsing_errors=True,
+    )
 
-    
+   
  response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
  result = response["output"]
  return st.success(result)
