@@ -38,7 +38,7 @@ def read_csv_from_github(archivo):
     raise FileNotFoundError(f'El archivo CSV {archivo} no existe.')
 
   # Leer el archivo CSV.
-  df_db = pd.read_csv(url)
+  df_db = pd.read_csv(url, delimiter=',')
 
   return df_db
 
