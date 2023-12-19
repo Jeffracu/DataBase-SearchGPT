@@ -6,11 +6,7 @@ import warnings
 import pandas as pd
 import os
 import streamlit as st
-
 warnings.filterwarnings("ignore")
-
-# Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
-
 from langchain.agents import AgentType
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain.chat_models import ChatOpenAI
@@ -21,41 +17,24 @@ from langchain.prompts.prompt import PromptTemplate
 st.set_page_config(page_title='🤖 Structural Database Search')
 st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
-#Primero se deben subir los archivos csv que se van a utilizar como fuente de información 
-url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEstructuras.csv"
-url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
+#Primero se deben subir el csv que se van a utilizar como fuente de información 
 
-
-df_estructuras = pd.read_csv(url1, sep=',', encoding="utf-8")
-df_memorias = pd.read_csv(url2, sep=',', encoding="utf-8")
-
-def merge_metadata(df_estructuras, df_memorias):
+def read_csv_from_github(archivo):
   """
-  Combina dos DataFrames, df_estructuras y df_memorias, utilizando la columna
-  `id_archivo` como clave de unión.
+  Lee un archivo CSV que se encuentra en la carpeta main del repositorio de GitHub.
 
   Parámetros:
-    df_estructuras: DataFrame con información de las estructuras.
-    df_memorias: DataFrame con información de las memorias.
+    archivo: Nombre del archivo CSV.
 
   Devuelve:
-    DataFrame con información de las estructuras y la metadata de las memorias
-    asociadas.
+    DataFrame con los datos del archivo CSV.
   """
 
-  # Unir los DataFrames utilizando la columna `id_archivo`.
-  df = pd.merge(df_estructuras, df_memorias, on='id_archivo')
 
-  # Agregar las columnas de la metadata de los archivos a las estructuras.
-  for columna in df_memorias.columns:
-    if columna not in df_estructuras.columns:
-      df_estructuras[columna] = df['id_archivo'].apply(lambda x: df_memorias.loc[df_memorias['id_archivo'] == x, columna].iloc[0])
+  # Leer el archivo CSV.
+  df_db = read_csv_from_github('df_base.csv')
 
-  return df_estructuras
-df_estructuras = pd.read_csv('informacionEstructuras.csv')
-df_memorias = pd.read_csv('archivosMemorias.csv')
-
-df_db = merge_metadata(df_estructuras, df_memorias)
+  return df_db
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
@@ -103,7 +82,7 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
 texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo, por url y describe las características de cada proyecto referenciado"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
-
+# Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
 openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password', disabled=not (user_query))
 #"""Análisis del agente"""
 if not openai_api_key.startswith('sk-'):
