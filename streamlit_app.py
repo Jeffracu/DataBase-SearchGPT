@@ -35,6 +35,7 @@ def read_csv_from_github(archivo):
   df_db = read_csv_from_github('df_base.csv')
 
   return df_db
+df_db = read_csv_from_github('df_base.csv')
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
@@ -82,11 +83,16 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
 texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo, por url y describe las características de cada proyecto referenciado"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
+
+# Agrega el botón de buscar
+button_buscar = st.button('Buscar')
+
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
 openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password', disabled=not (user_query))
 #"""Análisis del agente"""
 if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
-if openai_api_key.startswith('sk-'):
+if openai_api_key.startswith('sk-') and caracteristicas_estructura != '' and button_buscar.is_pressed():
  st.header('Sugerencia')
  generate_response(df_db, user_query)
+ 
