@@ -88,8 +88,7 @@ user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 button_buscar = st.button('Buscar')
 
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
-openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password', disabled=not (user_query))
-#"""Análisis del agente"""
+openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password', disabled=not (caracteristicas_estructura))
 if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
 if openai_api_key.startswith('sk-') and caracteristicas_estructura != '' and button_buscar.is_pressed():
