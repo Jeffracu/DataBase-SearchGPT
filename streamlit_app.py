@@ -5,6 +5,7 @@ import openai
 import warnings
 import pandas as pd
 import os
+import requests
 import streamlit as st
 warnings.filterwarnings("ignore")
 from langchain.agents import AgentType
