@@ -30,7 +30,7 @@ def read_csv_from_github(archivo):
 
 
   # Obtener el URL del archivo CSV.
-  url = f'https://raw.githubusercontent.com/[{archivo}]/master/{archivo}'
+  url = f'df_base.csv'
 
   # Comprobar si el archivo CSV existe.
   if not requests.head(url).ok:
