@@ -19,7 +19,7 @@ st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
 def read_csv_from_github(archivo):
   """
-  Lee un archivo CSV que se encuentra en la carpeta main del repositorio de GitHub.
+  Lee un archivo CSV que se encuentra en la rama master del repositorio de GitHub.
 
   Parámetros:
     archivo: Nombre del archivo CSV.
@@ -30,7 +30,7 @@ def read_csv_from_github(archivo):
 
 
   # Obtener el URL del archivo CSV.
-  url = f'https://raw.githubusercontent.com/[{archivo}]/main/{archivo}'
+  url = f'https://raw.githubusercontent.com/[{archivo}]/master/{archivo}'
 
   # Comprobar si el archivo CSV existe.
   if not requests.head(url).ok:
