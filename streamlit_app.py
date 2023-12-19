@@ -30,7 +30,7 @@ def read_csv_from_github(archivo):
 
 
   # Obtener el URL del archivo CSV.
-  url = f'df_base.csv'
+  url = f'https://github.com/Jeffracu/DataBase-SearchGPT/blob/3bc55144127a5dcd655f630673edc0118371d7fa/df_base.csv'
 
   # Comprobar si el archivo CSV existe.
   if not requests.head(url).ok:
