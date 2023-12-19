@@ -26,9 +26,36 @@ url1 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/informacionEs
 url2 = "https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/archivosMemorias.csv"
 
 
-df_estructuras = pd.read_csv(url1, sep=',', encoding="utf-8", error_bad_lines=False)
-df_memorias = pd.read_csv(url2, sep=',', encoding="utf-8", error_bad_lines=False)
-df_db = pd.merge(df_estructuras, df_memorias, on='id_archivo', how='outer')
+df_estructuras = pd.read_csv(url1, sep=',', encoding="utf-8")
+df_memorias = pd.read_csv(url2, sep=',', encoding="utf-8")
+
+def merge_metadata(df_estructuras, df_memorias):
+  """
+  Combina dos DataFrames, df_estructuras y df_memorias, utilizando la columna
+  `id_archivo` como clave de unión.
+
+  Parámetros:
+    df_estructuras: DataFrame con información de las estructuras.
+    df_memorias: DataFrame con información de las memorias.
+
+  Devuelve:
+    DataFrame con información de las estructuras y la metadata de las memorias
+    asociadas.
+  """
+
+  # Unir los DataFrames utilizando la columna `id_archivo`.
+  df = pd.merge(df_estructuras, df_memorias, on='id_archivo')
+
+  # Agregar las columnas de la metadata de los archivos a las estructuras.
+  for columna in df_memorias.columns:
+    if columna not in df_estructuras.columns:
+      df_estructuras[columna] = df['id_archivo'].apply(lambda x: df_memorias.loc[df_memorias['id_archivo'] == x, columna].iloc[0])
+
+  return df_estructuras
+df_estructuras = pd.read_csv('informacionEstructuras.csv')
+df_memorias = pd.read_csv('archivosMemorias.csv')
+
+df_db = merge_metadata(df_estructuras, df_memorias)
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
