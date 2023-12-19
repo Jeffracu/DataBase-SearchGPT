@@ -17,8 +17,6 @@ from langchain.prompts.prompt import PromptTemplate
 st.set_page_config(page_title='🤖 Structural Database Search')
 st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
-#Primero se deben subir el csv que se van a utilizar como fuente de información 
-
 def read_csv_from_github(archivo):
   """
   Lee un archivo CSV que se encuentra en la carpeta main del repositorio de GitHub.
@@ -31,10 +29,21 @@ def read_csv_from_github(archivo):
   """
 
 
+  # Obtener el URL del archivo CSV.
+  url = f'https://raw.githubusercontent.com/[{archivo}]/main/{archivo}'
+
+  # Comprobar si el archivo CSV existe.
+  if not requests.head(url).ok:
+    raise FileNotFoundError(f'El archivo CSV {archivo} no existe.')
+
   # Leer el archivo CSV.
-  df_db = read_csv_from_github('df_base.csv')
+  df_db = pd.read_csv(url)
 
   return df_db
+
+
+#Primero se deben subir el csv que se van a utilizar como fuente de información 
+
 df_db = read_csv_from_github('df_base.csv')
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
