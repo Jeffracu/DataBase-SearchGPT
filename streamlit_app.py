@@ -57,7 +57,7 @@ def generate_response(df_db, user_query):
  llm = ChatOpenAI(temperature=0, model=model_option, openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
- Dada una consulta del usuario {dialect}
+ Dada una consulta del usuario {input}
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos exactos y similares en df_estructuras
  2. Devuelve una respuesta en español que incluya:
