@@ -19,6 +19,7 @@ from langchain.prompts.prompt import PromptTemplate
 st.set_page_config(page_title='🤖 Structural Database Search')
 st.title('DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
+@st.cache_data(df_db="2h")
 def read_csv_from_github(archivo):
   """
   Lee un archivo CSV que se encuentra en la rama master del repositorio de GitHub.
