@@ -6,3 +6,4 @@ langchain_experimental
 pathlib==1.0.1
 requests
 tabulate
+--upgrade langchain
