@@ -73,7 +73,7 @@ def generate_response(df_db, user_query):
     llm,
     df_db,
     verbose=True,
-    agent_type=AgentType.OPENAI_FUNCTIONS,
+    agent_type=AgentType.OPENAI_GENERATED_RESPONSE,
     prompt_template=PROMPT,
     max_iterations=5,
     handle_parsing_errors=True,
