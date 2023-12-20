@@ -5,3 +5,4 @@ streamlit==1.29.0
 langchain_experimental
 pathlib==1.0.1
 requests
+tabulate

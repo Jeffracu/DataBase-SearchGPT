@@ -23,29 +23,26 @@ def read_csv_from_github(archivo):
   Lee un archivo CSV que se encuentra en la rama master del repositorio de GitHub.
 
   Parámetros:
-    archivo: Nombre del archivo CSV.
+    archiv: Nombre del archivo CSV.
 
   Devuelve:
     DataFrame con los datos del archivo CSV.
   """
 
-
   # Obtener el URL del archivo CSV.
-  url = f'https://github.com/Jeffracu/DataBase-SearchGPT/blob/3bc55144127a5dcd655f630673edc0118371d7fa/df_base.csv'
+  url = f'df_base.csv'
 
-  # Comprobar si el archivo CSV existe.
-  if not requests.head(url).ok:
-    raise FileNotFoundError(f'El archivo CSV {archivo} no existe.')
+  # Verificar si el archivo existe.
+  if not os.path.exists(url):
+    raise FileNotFoundError(f'El archivo {archivo} no existe.')
 
   # Leer el archivo CSV.
-  df_db = pd.read_csv(url, delimiter=',')
+  df_db = pd.read_csv(url, delimiter=',', parse_dates=True)
 
   return df_db
 
-
-#Primero se deben subir el csv que se van a utilizar como fuente de información 
-
 df_db = read_csv_from_github('df_base.csv')
+
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
@@ -62,8 +59,8 @@ def generate_response(df_db, user_query):
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos similares en df_estructuras
  2. Devuelve una respuesta en español que incluya:
-   - Referencias a proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación de df_memorias
-   - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación de df_memorias
+   - Referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url completa de ubicación
+   - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url completa de ubicación
 
  Respuesta {output}
  Pregunta {input}
@@ -85,23 +82,21 @@ def generate_response(df_db, user_query):
  result = response["output"]
  return st.success(result)
 
-
-## Obtén las características de la estructura del usuario
-caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Escribe tu consulta aquí ...')
-
-# Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
-texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo, por url y describe las características de cada proyecto referenciado"
-user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
-
-# Agrega el botón de buscar
-button_buscar = st.button('Buscar')
-
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
-openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password', disabled=not (caracteristicas_estructura))
+openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password')
 if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
-if openai_api_key.startswith('sk-') and caracteristicas_estructura != '' and button_buscar.is_pressed():
- st.header('Sugerencia')
+## Obtén las características de la estructura del usuario
+caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Escribe tu consulta aquí ...', disabled=not (openai_api_key))
+
+# Agrega más información a la solicitud para una respuesta robusta
+texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia todos los proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
+texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo, por url completa y describe las características de cada proyecto referenciado excepto ubicacion y peso_bytes"
+user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
+
+
+
+if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
+ st.header('Consulta procesada')
  generate_response(df_db, user_query)
  
