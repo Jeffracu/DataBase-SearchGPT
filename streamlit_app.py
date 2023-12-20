@@ -16,7 +16,7 @@ from langchain.prompts.prompt import PromptTemplate
 
 # Título de la página
 st.set_page_config(page_title='🤖 Structural Database Search')
-st.title('🤖 DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
+st.title('DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
 
 def read_csv_from_github(archivo):
   """
@@ -58,9 +58,9 @@ def generate_response(df_db, user_query):
  Dada una consulta del usuario {dialect}
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos similares en df_estructuras
- 2. Devuelve una respuesta en español que incluya:
-   - Referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url completa de ubicación
-   - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url completa de ubicación
+ 2. Devuelve una tabla respuesta en español que incluya:
+   - Referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su carpeta de ubicación
+   - Referencias a proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su carpeta de ubicación
 
  Respuesta {output}
  Pregunta {input}
@@ -77,7 +77,7 @@ def generate_response(df_db, user_query):
     handle_parsing_errors=True,
     )
 
-   
+
  response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
  result = response["output"]
  return st.success(result)
@@ -91,12 +91,13 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia todos los proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
-texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo, por url completa y describe las características de cada proyecto referenciado excepto ubicacion y peso_bytes"
+texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo y carpeta de ubicación y describe las principales características de cada proyecto referenciado"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
-
 if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
- st.header('Consulta procesada')
- generate_response(df_db, user_query)
- 
+ with st.spinner('El asistente 🤖 está procesando su consulta...'):
+  response = generate_response(df_db, user_query)
+
+ if response:
+  st.write('...respuesta generada')
