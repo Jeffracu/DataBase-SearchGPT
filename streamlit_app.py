@@ -57,7 +57,7 @@ def generate_response(df_db, user_query):
  llm = ChatOpenAI(temperature=0, model=model_option, openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
- Dada una consulta del usuario {input}
+ Dada una consulta del usuario {dialect}
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos exactos y similares en df_estructuras
  2. Devuelve una respuesta en español que incluya:
@@ -67,7 +67,7 @@ def generate_response(df_db, user_query):
  Respuesta {output}
  Pregunta {input}
  """
- PROMPT = PromptTemplate(input_variables=["input","dialect","output",],template=_DEFAULT_TEMPLATE)
+ PROMPT = PromptTemplate(input_variables=["input","dialect","output"],template=_DEFAULT_TEMPLATE)
  # Crear un agente `pandas_df_agent` que usa el modelo de lenguaje y el DataFrame base.
  pandas_df_agent = create_pandas_dataframe_agent(
     llm,
@@ -89,7 +89,7 @@ openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='passwo
 if not openai_api_key.startswith('sk-'):
  st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
 ## Obtén las características de la estructura del usuario
-caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Escribe tu consulta aquí ...', disabled=not (openai_api_key))
+caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia todos los proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
