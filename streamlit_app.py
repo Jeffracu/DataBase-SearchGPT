@@ -103,5 +103,12 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 
  if response:
   st.write('...respuesta generada')
+# ...
+
+# Botón para acceder a la información del autor y los derechos de autor.
+if st.button('Información del autor y los derechos de autor'):
+  st.write('**Autor:** Jefferson Ramos')
+  st.write('**Derechos de autor:** 2023 Jefferson Ramos')
+  st.write('**Licencia:** MIT')
 
 
