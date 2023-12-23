@@ -1,3 +1,8 @@
+# Copyright (c) 2023, Jefferson Ramos. 
+
+# This code is protected by copyright law.
+# Do not copy or distribute without permission.
+
 ## ⚙️ Setup
 
 import os
@@ -105,8 +110,9 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 # Botón para acceder a la información del autor y los derechos de autor.
 if st.sidebar.button('Información del autor y los derechos de autor'):
   st.sidebar.write('**Autor:**')
-  st.sidebar.write('2023, Jefferson Ramos')
+  st.sidebar.write('Jefferson Ramos')
   st.sidebar.write('**Licencia:**')
-  st.sidebar.write('MIT')
+  st.sidebar.write('Copyright (c) 2023, Jefferson Ramos. ')
+  st.sidebar.write('Do not copy or distribute without permission.') 
 
 
