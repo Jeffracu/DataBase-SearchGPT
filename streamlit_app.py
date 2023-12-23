@@ -32,14 +32,14 @@ def read_csv_from_github(archivo):
   """
 
   # Obtener el URL del archivo CSV.
-  url = f'df_base.csv'
+  url1 = f'df_base.csv'
 
   # Verificar si el archivo existe.
-  if not os.path.exists(url):
+  if not os.path.exists(url1):
     raise FileNotFoundError(f'El archivo {archivo} no existe.')
 
   # Leer el archivo CSV.
-  df_db = pd.read_csv(url, delimiter=',', parse_dates=True)
+  df_db = pd.read_csv(url1, delimiter=',', parse_dates=True)
 
   return df_db
 
@@ -51,10 +51,10 @@ st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
 
 def generate_response(df_db, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True)
+ llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo-1106', openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
- Dada una consulta del usuario {dialect}
+ Dada una consulta del usuario {input}
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos exactos y similares en df_estructuras
  2. Devuelve una respuesta en español que incluya:
@@ -95,7 +95,7 @@ user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
 if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
- with st.spinner('El asistente 🤖 está procesando su consulta...'):
+ with st.spinner('El asistente **🤖** está procesando su consulta...'):
   response = generate_response(df_db, user_query)
 
  if response:
@@ -104,8 +104,11 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 
 # Botón para acceder a la información del autor y los derechos de autor.
 if st.sidebar.button('Información del autor y los derechos de autor'):
-  st.sidebar.write('**Autor:** Jefferson Ramos')
-  st.sidebar.write('**Derechos de autor:** 2023 Jefferson Ramos')
-  st.sidebar.write('**Licencia:** MIT')
+  st.sidebar.write('**Autor:**')
+  st.sidebar.write('Jefferson Ramos')
+  st.sidebar.write('**Derechos de autor:**')
+  st.sidebar.write('2023 Jefferson Ramos')
+  st.sidebar.write('**Licencia:**')
+  st.sidebar.write('MIT')
 
 
