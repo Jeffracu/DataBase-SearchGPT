@@ -47,11 +47,11 @@ df_db = read_csv_from_github('df_base.csv')
 
 
 #Modelo de openai a utilizar
-st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
+st.sidebar.write('**Modelo OpenAI GPT:** gpt-3.5-turbo-1106')
 
-def generate_response(df_db, user_query):
+def generate_response(df_db, user_query, max_tokens=1000):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True)
+ llm = ChatOpenAI(temperature=0, model='gpt-3.5-turbo-1106', openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
  Dada una consulta del usuario {input}
@@ -90,7 +90,7 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Limítate a siempre actuar como buscador en el dataframe. Lista todos los proyectos usando id_archivo y url si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre por id_archivo y url"
+texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
