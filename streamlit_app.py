@@ -16,8 +16,8 @@ from langchain.document_loaders.csv_loader import CSVLoader
 from langchain.prompts.prompt import PromptTemplate
 
 # Título de la página
-st.set_page_config(page_title='🤖 Structural Database Search')
-st.title('DataBase-SearchGPT: Asistente de Búsqueda en la Base de datos')
+st.set_page_config(page_title='🤖 GPT Powered Database Search')
+st.title('**GPT-Powered Database Search**')
 
 @st.cache_data(ttl="2h")
 def read_csv_from_github(archivo):
@@ -90,7 +90,7 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Limítate a siempre actuar como buscador en el dataframe. Lista todos los proyectos usando id_archivo y url si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url"
+texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url, si el modelo es gpt-3.5-turbo-1106 omite la url"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
