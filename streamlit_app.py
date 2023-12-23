@@ -47,10 +47,7 @@ df_db = read_csv_from_github('df_base.csv')
 
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
-model_option = st.sidebar.selectbox(
-    'Confirma el modelo de OpenAI API:',
-    ('gpt-4-1106-preview')
-)
+model_option = st.sidebar.selectbox('Confirma el modelo de OpenAI API:',('gpt-4-1106-preview'))
 
 def generate_response(df_db, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
