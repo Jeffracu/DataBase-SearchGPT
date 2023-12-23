@@ -48,8 +48,8 @@ df_db = read_csv_from_github('df_base.csv')
 
 # Añadir una opción para seleccionar el modelo de openai a utilizar
 model_option = st.sidebar.selectbox(
-    'Selecciona un modelo:',
-    ('gpt-3.5-turbo-1106','gpt-4-1106-preview')
+    'Confirma el modelo de OpenAI API:',
+    ('gpt-4-1106-preview')
 )
 
 def generate_response(df_db, user_query):
@@ -92,8 +92,8 @@ if not openai_api_key.startswith('sk-'):
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Limítate a siempre actuar como buscador en la base de datos, además referencia todos los proyectos usando id_archivo con las condiciones exactas de df_db en df_estructuras a la siguiente consulta de usuario :\n"
-texto_ad2 = "\n O referencia proyectos usando id_archivo con alguna condición similar a la consulta de usuario de df_db en df_estructuras, referencia por id_archivo y carpeta de ubicación y describe las principales características de cada proyecto referenciado"
+texto_ad1 = "Limítate a siempre actuar como buscador en el dataframe. Lista todos los proyectos usando id_archivo y url si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre por id_archivo y url"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
@@ -103,3 +103,5 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 
  if response:
   st.write('...respuesta generada')
+
+
