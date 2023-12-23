@@ -106,9 +106,9 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 # ...
 
 # Botón para acceder a la información del autor y los derechos de autor.
-if st.button('Información del autor y los derechos de autor'):
-  st.write('**Autor:** Jefferson Ramos')
-  st.write('**Derechos de autor:** 2023 Jefferson Ramos')
-  st.write('**Licencia:** MIT')
+if st.sidebar.button('Información del autor y los derechos de autor'):
+  st.sidebar.write('**Autor:** Jefferson Ramos')
+  st.sidebar.write('**Derechos de autor:** 2023 Jefferson Ramos')
+  st.sidebar.write('**Licencia:** MIT')
 
 
