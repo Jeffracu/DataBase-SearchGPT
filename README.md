@@ -51,7 +51,13 @@ Se aceptan contribuciones a la aplicación. Si desea contribuir, siga estos paso
 
 ## **Licencia**
 
-La aplicación está licenciada bajo la licencia MIT.
+La aplicación está licenciada bajo la licencia de derechos de autor.
+
+Copyright (c) 2023, Jefferson Ramos. 
+
+This code is protected by copyright law.
+Do not copy or distribute without permission.
+ 
 
 ## **Agradecimientos**
 
