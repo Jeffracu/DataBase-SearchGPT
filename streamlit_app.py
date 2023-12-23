@@ -82,15 +82,15 @@ def generate_response(df_db, user_query, max_tokens=1000):
  return st.success(result)
 
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
-openai_api_key = st.sidebar.text_input('Inserte su OpenAI API Key', type='password')
+openai_api_key = st.sidebar.text_input('Inserte su llave OpenAI API', type='password')
 if not openai_api_key.startswith('sk-'):
- st.warning('Por favor ingrese su llave OpenAI API!', icon='⚠')
+ st.warning('¡Por favor, ingrese su llave OpenAI API en la barra desplegable de la izquierda!', icon='⚠')
 ## Obtén las características de la estructura del usuario
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Limítate a siempre actuar como buscador en el dataframe. Lista todos los proyectos usando id_archivo y url si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url, si el modelo es gpt-3.5-turbo-1106 omite la url"
+texto_ad2 = ". O referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
@@ -105,9 +105,7 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 # Botón para acceder a la información del autor y los derechos de autor.
 if st.sidebar.button('Información del autor y los derechos de autor'):
   st.sidebar.write('**Autor:**')
-  st.sidebar.write('Jefferson Ramos')
-  st.sidebar.write('**Derechos de autor:**')
-  st.sidebar.write('2023 Jefferson Ramos')
+  st.sidebar.write('2023, Jefferson Ramos')
   st.sidebar.write('**Licencia:**')
   st.sidebar.write('MIT')
 
