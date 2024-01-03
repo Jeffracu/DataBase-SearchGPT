@@ -1,7 +1,4 @@
-# Copyright (c) 2023, Jefferson Ramos. 
-
-# This code is protected by copyright law.
-# Do not copy or distribute without permission.
+#2023, Jefferson Ramos.
 
 ## ⚙️ Setup
 
@@ -112,7 +109,7 @@ if st.sidebar.button('Información del autor y los derechos de autor'):
   st.sidebar.write('**Autor:**')
   st.sidebar.write('Jefferson Ramos')
   st.sidebar.write('**Licencia:**')
-  st.sidebar.write('Copyright (c) 2023, Jefferson Ramos. ')
-  st.sidebar.write('Do not copy or distribute without permission.') 
+  st.sidebar.write('2023, Jefferson Ramos. ')
+  
 
 
