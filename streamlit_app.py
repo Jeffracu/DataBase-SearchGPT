@@ -13,7 +13,7 @@ import streamlit as st
 warnings.filterwarnings("ignore")
 from langchain.agents import AgentType
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain.document_loaders.csv_loader import CSVLoader
 from langchain.prompts.prompt import PromptTemplate
 
