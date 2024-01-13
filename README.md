@@ -20,7 +20,7 @@ La aplicación devolverá la referencia en la base de datos para una lista de es
 
 La aplicación está licenciada bajo la licencia de derechos de autor.
 
-Copyright (c) 2023, Jefferson Ramos. 
+Copyright (c) 2024, Jefferson Ramos. 
 
 This code is protected by copyright law.
 Do not copy or distribute without permission.
