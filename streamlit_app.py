@@ -91,8 +91,8 @@ if not openai_api_key.startswith('sk-'):
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Limítate a siempre actuar como buscador en el dataframe. Lista todos los proyectos usando id_archivo y url completo si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url completo"
+texto_ad1 = "Actúa como asistente buscador en el dataframe. Lista todos los proyectos usando id_archivo y url (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url (sin acortar), con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url (sin acortar)"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
