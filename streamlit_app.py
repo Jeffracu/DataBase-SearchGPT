@@ -53,7 +53,7 @@ st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
 
 def generate_response(df_db, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True)
+ llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True, max_tokens = 5000)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
  Dada una consulta del usuario {input}
@@ -78,8 +78,7 @@ def generate_response(df_db, user_query):
     handle_parsing_errors=True,
     )
 
- max_tokens = 5000  # Ajusta este valor según tus necesidades
- response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True, max_tokens=max_tokens)
+ response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
   #response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
  result = response["output"]
  return st.success(result)
