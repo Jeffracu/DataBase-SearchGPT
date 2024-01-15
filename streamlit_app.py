@@ -16,6 +16,20 @@ from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe
 from langchain_community.chat_models import ChatOpenAI
 from langchain.document_loaders.csv_loader import CSVLoader
 from langchain.prompts.prompt import PromptTemplate
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+
+# Configurar la autenticación de Google Drive
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
+drive = GoogleDrive(gauth)
+
+# Obtener el ID de la carpeta en Google Drive
+folder_id = '1Hd0ej0OHwkc7zAFFgwkQloeKRKCsvM2l'  # Reemplaza 'your_folder_id' con el ID de tu carpeta
+
+# Obtener el enlace de acceso a la carpeta
+folder_link = drive.CreateFile({'id': folder_id}).GetHREFLink()
+
 
 # Título de la página
 st.set_page_config(page_title='🤖 GPT Powered Database Search')
@@ -102,6 +116,8 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 
  if response:
   st.write('...respuesta generada')
+  # Crear el botón de acceso a la carpeta
+  st.button('Acceder a la carpeta', on_click=lambda: os.system(f'xdg-open {folder_link}'))
 # ...
 
 # Botón para acceder a la información del autor y los derechos de autor.
