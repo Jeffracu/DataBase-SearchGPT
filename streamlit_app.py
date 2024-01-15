@@ -78,10 +78,10 @@ def generate_response(df_db, user_query):
     handle_parsing_errors=True,
     )
 
-
- response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
+ max_tokens = 5000  # Ajusta este valor según tus necesidades
+ response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True, max_tokens=max_tokens)
+  #response = pandas_df_agent({"input": user_query}, {"dialect": _DEFAULT_TEMPLATE}, include_run_info=True)
  result = response["output"]
- result = result.replace("https://github.com/Jeffracu/DataBase-SearchGPT/blob/master/", "")
  return st.success(result)
 
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
