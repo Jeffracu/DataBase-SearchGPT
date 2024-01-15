@@ -49,11 +49,11 @@ df_db = read_csv_from_github('df_base.csv')
 
 
 #Modelo de openai a utilizar
-st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-turbo-1106')
+st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
 
 def generate_response(df_db, user_query, max_tokens=1000):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-turbo-1106', openai_api_key=openai_api_key, streaming=True)
+ llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
  Dada una consulta del usuario {input}
