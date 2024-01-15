@@ -60,8 +60,8 @@ def generate_response(df_db, user_query):
  Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
  1. Consulta los datos exactos y similares en df_estructuras
  2. Devuelve una respuesta en español que incluya:
-   - Lista con referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación
-   - Lista con referencias a algunos proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url de ubicación
+   - Lista con referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url exacta y completa de ubicación
+   - Lista con referencias a algunos proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url exacta y completa de ubicación
 
  Respuesta {output}
  Pregunta {input}
@@ -92,8 +92,8 @@ if not openai_api_key.startswith('sk-'):
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Actúa como asistente buscador en el dataframe. Lista todos los proyectos usando id_archivo y url (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url (sin acortar), con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url (sin acortar)"
+texto_ad1 = "Actúa como asistente buscador en el dataframe. Lista todos los proyectos usando id_archivo y url exacta (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url exacta (sin acortar), con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url exacta (sin acortar)"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
