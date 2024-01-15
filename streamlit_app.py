@@ -53,7 +53,7 @@ st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
 
 def generate_response(df_db, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True, max_tokens = 3000)
+ llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True, max_tokens = 4000)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
  Dada una consulta del usuario {input}
@@ -91,7 +91,7 @@ if not openai_api_key.startswith('sk-'):
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Actúa como asistente buscador en el dataframe. Lista todos los proyectos usando id_archivo y url exacta (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad1 = "Actúa como buscador automatizado del dataframe df_db. Lista todos los proyectos usando id_archivo y url exacta (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
 texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url exacta (sin acortar), con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url exacta (sin acortar)"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
