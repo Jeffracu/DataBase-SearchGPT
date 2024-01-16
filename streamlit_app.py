@@ -94,7 +94,7 @@ caracteristicas_estructura = st.text_input('Ingresa las características para la
 
 # Agrega más información a la solicitud para una respuesta robusta
 texto_ad1 = "Actúa como buscador del dataframe df_db. Lista completamente (sin abreviar) todos los proyectos usando id_archivo, url y carpeta de ubicación, si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". Si no hay coincidencias exactas referencia proyectos usando id_archivo, url y carpeta de ubicación, con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo, url y carpeta de ubicación, Complementa con detalles estructurales de cada estructura de referencia, como tipo, altura, suelo, amenaza sismica"
+texto_ad2 = ". Si no hay coincidencias exactas referencia proyectos usando id_archivo, url y carpeta de ubicación, con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo, url y carpeta de ubicación, Complementa con id estructura y nombre"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
