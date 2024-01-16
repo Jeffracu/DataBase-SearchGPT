@@ -23,7 +23,7 @@ from langchain.prompts.prompt import PromptTemplate
 st.set_page_config(page_title='🤖 GPT Powered Database Search')
 st.title('**GPT-Powered Database Search**')
 
-@st.cache_data(ttl="2h")
+
 def read_csv_from_github(archivo):
   """
   Lee un archivo CSV que se encuentra en la rama master del repositorio de GitHub.
