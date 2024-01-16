@@ -18,13 +18,11 @@ La aplicación devolverá la referencia en la base de datos para una lista de es
 
 ## **Licencia**
 
-La aplicación está licenciada bajo la licencia de derechos de autor.
+The code in this repository is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license.
 
-Copyright (c) 2024, Jefferson Ramos. 
+Copyright 2024, Jefferson Ramos. 
 
-This code is protected by copyright law.
-Do not copy or distribute without permission.
- 
+
 
 ## **Agradecimientos**
 
