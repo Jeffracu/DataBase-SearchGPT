@@ -55,20 +55,20 @@ st.sidebar.write('**Modelo OpenAI GPT:** gpt-4-1106-preview')
 
 def generate_response(df_db, user_query):
  # Crear un objeto `ChatOpenAI` con la configuración deseada.
- llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True, max_tokens = 4000)
+ llm = ChatOpenAI(temperature=0, model='gpt-4-1106-preview', openai_api_key=openai_api_key, streaming=True)
  # Crear un objeto `PromptTemplate` con el formato de la respuesta deseada.
  _DEFAULT_TEMPLATE = """
  Dada una consulta del usuario {input}
- Sólo utiliza la información de df_db que integra df_estructuras y df_memorias 
- 1. Consulta los datos exactos y similares en df_estructuras
+ Sólo utiliza la información de df_db 
+ 1. Consulta los datos exactos y similares en df_db
  2. Devuelve una respuesta en español que incluya:
-   - Lista con referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_estructuras con id_archivo y su url exacta y completa de ubicación
-   - Lista con referencias a algunos proyectos con las condiciones similares a la consulta de usuario en df_estructuras con id_archivo y su url exacta y completa de ubicación
+   - Lista con referencias a todos los proyectos con las condiciones exactas a la consulta de usuario en df_db con id_archivo y su carpeta de ubicación
+   - Lista con referencias a algunos proyectos con las condiciones similares a la consulta de usuario en df_db con id_archivo y su carpeta de ubicación
 
  Respuesta {output}
  Pregunta {input}
  """
- PROMPT = PromptTemplate(input_variables=["input","dialect","output"],template=_DEFAULT_TEMPLATE)
+ PROMPT = PromptTemplate(input_variables=["input","dialect"],template=_DEFAULT_TEMPLATE)
  # Crear un agente `pandas_df_agent` que usa el modelo de lenguaje y el DataFrame base.
  pandas_df_agent = create_pandas_dataframe_agent(
     llm,
@@ -88,13 +88,13 @@ def generate_response(df_db, user_query):
 # Obtén la openai api key desde https://platform.openai.com/account/api-keys 🔑
 openai_api_key = st.sidebar.text_input('Inserte su llave OpenAI API', type='password')
 if not openai_api_key.startswith('sk-'):
- st.warning('¡Por favor, ingrese su llave OpenAI API en la barra desplegable de la izquierda!', icon='⚠')
+ st.warning('Por favor, ingrese su llave OpenAI API en la barra desplegable de la izquierda', icon='⚠')
 ## Obtén las características de la estructura del usuario
-caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificio en suelo tipo D ...', disabled=not (openai_api_key))
+caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificios en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Actúa como buscador automatizado del dataframe df_db. Lista todos los proyectos usando id_archivo y url exacta (sin acortar), si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". si no hay coincidencias exactas referencia proyectos usando id_archivo y url exacta (sin acortar), con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y url exacta (sin acortar)"
+texto_ad1 = "Actúa como asistente buscador automatizado del dataframe df_db. Lista todos los proyectos usando id_archivo y carpeta de ubicación, si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad2 = ". Si no hay coincidencias exactas referencia proyectos usando id_archivo y carpeta de ubicación, con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo y carpeta de ubicación, además puedes dar algunos detalles estructurales de cada referencia"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
@@ -111,7 +111,7 @@ if st.sidebar.button('Información del autor y los derechos de autor'):
   st.sidebar.write('**Autor:**')
   st.sidebar.write('Jefferson Ramos')
   st.sidebar.write('**Licencia:**')
-  st.sidebar.write('2024, Jefferson Ramos. ')
+  st.sidebar.write('2024, Jefferson Ramos')
   
 
 
