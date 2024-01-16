@@ -93,8 +93,8 @@ if not openai_api_key.startswith('sk-'):
 caracteristicas_estructura = st.text_input('Ingresa las características para la búsqueda:', placeholder = 'Edificios en suelo tipo D ...', disabled=not (openai_api_key))
 
 # Agrega más información a la solicitud para una respuesta robusta
-texto_ad1 = "Actúa como buscador del dataframe df_db. Lista completamente (sin abreviar) todos los proyectos usando id_archivo, url (clicable, sin acortar) y nombre, si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
-texto_ad2 = ". Si no hay coincidencias exactas referencia proyectos usando id_archivo, url (clicable, sin acortar) y nombre, con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo, url (clicable, sin acortar) y nombre"
+texto_ad1 = "Actúa como buscador del dataframe df_db. Lista completamente (sin abreviar) todos los proyectos usando id_archivo, id_estructura y nombre, si cumple con las condiciones exactas en el dataframe a la siguiente consulta de usuario :"
+texto_ad2 = ". Si no hay coincidencias exactas referencia proyectos usando id_archivo, id_estructura y nombre, con alguna condición similar a la consulta de usuario en el dataframe. Responde siempre en español y referencia siempre con una lista por id_archivo, id_estructura y nombre"
 user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 
 
@@ -104,6 +104,7 @@ if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
 
  if response:
   st.write('...respuesta generada')
+  st.button("Ir a carpeta de ubicación", url="https://drive.google.com/drive/u/2/folders/1Hd0ej0OHwkc7zAFFgwkQloeKRKCsvM2l")
   # ...
 
 # Botón para acceder a la información del autor y los derechos de autor.
