@@ -101,7 +101,7 @@ user_query = texto_ad1 + caracteristicas_estructura + texto_ad2
 if openai_api_key.startswith('sk-') and caracteristicas_estructura != '':
  with st.spinner('El asistente **🤖** está procesando su consulta...'):
   response = generate_response(df_db, user_query)
- st.button("Ir a carpeta de ubicación", url="https://drive.google.com/drive/u/2/folders/1Hd0ej0OHwkc7zAFFgwkQloeKRKCsvM2l")
+
  if response:
   st.write('...respuesta generada')
     # ...
