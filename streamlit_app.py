@@ -1,4 +1,4 @@
-#2024, Jefferson Ramos.
+#Copyright 2024 Jefferson Ramos.
 
 ## ⚙️ Setup
 
@@ -111,7 +111,8 @@ if st.sidebar.button('Información del autor y los derechos de autor'):
   st.sidebar.write('**Autor:**')
   st.sidebar.write('Jefferson Ramos')
   st.sidebar.write('**Licencia:**')
-  st.sidebar.write('2024, Jefferson Ramos')
+  st.sidebar.write('Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license.') 
+  st.sidebar.write('Copyright 2024 Jefferson Ramos')
   
 
 
