@@ -20,7 +20,7 @@ La aplicación devolverá la referencia en la base de datos para una lista de es
 
 The code in this repository is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International license.
 
-Copyright 2024, Jefferson Ramos. 
+2024, Jefferson Ramos. 
 
 
 
