@@ -30,4 +30,4 @@ No puede otorgar permisos que anulen los términos de la licencia. Por ejemplo, 
 
 [https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.es](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode.es)
 
-**Fin de la licencia**
+
